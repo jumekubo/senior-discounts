@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior Citizen Discounts Guide 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap');
+  :root {
+    --gold:#C9A84C; --gold-light:#E8C97A;
+    --navy:#1A2744; --navy-mid:#243257;
+    --cream:#FAF7F0; --warm-white:#FFFDF9;
+    --text:#2C2C2C; --muted:#6B6B6B; --border:#E2D9C8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+
+  header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,#2D4070 100%);padding:52px 32px 44px;text-align:center;position:relative;overflow:hidden;}
+  header::before{content:'';position:absolute;top:-50%;left:-20%;width:140%;height:200%;background:radial-gradient(ellipse at 70% 40%,rgba(201,168,76,.13) 0%,transparent 60%);pointer-events:none;}
+  .header-badge{display:inline-block;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold-light);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;border-radius:20px;margin-bottom:18px;}
+  header h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,54px);color:#fff;line-height:1.15;margin-bottom:14px;}
+  header h1 span{color:var(--gold-light);}
+  header p{color:rgba(255,255,255,.65);font-size:16px;font-weight:300;max-width:540px;margin:0 auto 20px;line-height:1.65;}
+  .header-meta{font-size:12px;color:rgba(255,255,255,.38);letter-spacing:.5px;}
+
+  .stats-bar{background:var(--navy);display:flex;justify-content:center;gap:48px;padding:14px 32px;flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold-light);display:block;}
+  .stat-label{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:1px;text-transform:uppercase;}
+
+  .controls{background:var(--warm-white);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+  .search-box{display:flex;align-items:center;gap:8px;background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:9px 14px;flex:1;min-width:200px;max-width:340px;}
+  .search-box input{border:none;background:transparent;font-family:'Source Sans 3',sans-serif;font-size:14px;color:var(--text);outline:none;width:100%;}
+  .search-box svg{color:var(--muted);flex-shrink:0;}
+  .filter-tabs{display:flex;gap:6px;flex-wrap:wrap;flex:2;}
+  .filter-tab{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap;}
+  .filter-tab.active,.filter-tab:hover{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+  .main{padding:36px 32px;max-width:1200px;margin:0 auto;}
+  .disclaimer{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:14px 20px;font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:36px;}
+  .disclaimer strong{color:var(--navy);}
+
+  .category-section{margin-bottom:44px;animation:fadeUp .5s ease forwards;opacity:0;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .category-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--border);}
+  .category-icon{width:42px;height:42px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+  .category-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);}
+  .category-count{margin-left:auto;font-size:12px;color:var(--muted);background:var(--border);padding:3px 12px;border-radius:10px;}
+
+  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;}
+  .discount-card{background:var(--warm-white);border:1px solid var(--border);border-radius:12px;padding:20px 22px;transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden;}
+  .discount-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+  .discount-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.1);transform:translateY(-2px);}
+  .card-company{font-weight:600;font-size:16px;color:var(--navy);margin-bottom:4px;}
+  .card-discount{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);margin-bottom:8px;}
+  .card-description{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:14px;min-height:36px;}
+  .card-tags{display:flex;flex-wrap:wrap;gap:5px;}
+  .tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:4px;letter-spacing:.2px;}
+  .tag-age{background:#E8F5E9;color:#2E7D32;}
+  .tag-restrict{background:#FFF3E0;color:#E65100;}
+  .tag-national{background:#E3F2FD;color:#1565C0;}
+  .tag-regional{background:#F3E5F5;color:#6A1B9A;}
+  .card-footer{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);}
+  .source-link{font-size:12px;color:var(--gold);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:4px;transition:color .2s;}
+  .source-link:hover{color:var(--navy);}
+  .source-link svg{flex-shrink:0;}
+
+  .no-results{text-align:center;padding:72px 32px;color:var(--muted);}
+  .no-results h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);margin-bottom:8px;}
+
+  /* LOCATION BAR */
+  .location-bar{background:linear-gradient(90deg,#1e3a5f,#243257);border-bottom:1px solid rgba(201,168,76,.25);padding:12px 32px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .location-label{font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap;font-weight:600;}
+  .zip-box{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:7px 12px;}
+  .zip-box input{background:transparent;border:none;font-family:'Source Sans 3',sans-serif;font-size:14px;color:#fff;outline:none;width:90px;letter-spacing:1px;}
+  .zip-box input::placeholder{color:rgba(255,255,255,.35);}
+  .zip-btn{padding:7px 16px;background:var(--gold);color:var(--navy);border:none;border-radius:7px;font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:background .2s;white-space:nowrap;}
+  .zip-btn:hover{background:var(--gold-light);}
+  .geo-btn{padding:7px 14px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold-light);border-radius:7px;font-family:'Source Sans 3',sans-serif;font-size:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+  .geo-btn:hover{background:rgba(201,168,76,.15);}
+  .location-status{font-size:12px;color:var(--gold-light);margin-left:4px;}
+  .location-clear{background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer;font-size:18px;line-height:1;padding:0 4px;transition:color .2s;}
+  .location-clear:hover{color:#fff;}
+
+  /* FIND NEAR ME button on cards */
+  .card-footer{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .find-btn{font-size:12px;color:#1565C0;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:4px;transition:color .2s;background:none;border:none;cursor:pointer;padding:0;font-family:'Source Sans 3',sans-serif;}
+  .find-btn:hover{color:var(--navy);}
+  .find-btn svg{flex-shrink:0;}
+
+  footer{background:var(--navy);color:rgba(255,255,255,.4);text-align:center;padding:24px 32px;font-size:12px;line-height:1.7;margin-top:20px;}
+  footer a{color:var(--gold-light);text-decoration:none;}
+
+  @media(max-width:600px){
+    .controls{padding:14px 16px;} .main{padding:24px 16px;} header{padding:40px 16px 36px;} .stats-bar{gap:24px;}
+    .location-bar{padding:12px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">Researched &amp; Updated · May 2026</div>
+  <h1>Senior Citizen <span>Discounts</span> Guide</h1>
+  <p>A comprehensive, categorized directory of discounts available to older adults across dining, retail, travel, technology, and more.</p>
+  <div class="header-meta">Sources: AARP · The Senior List · GoHealth · SeniorLiving.org · Clark.com &nbsp;·&nbsp; Always verify with the business before visiting</div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num" id="totalCount">—</span><span class="stat-label">Discounts Listed</span></div>
+  <div class="stat"><span class="stat-num">6</span><span class="stat-label">Categories</span></div>
+  <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Starting Age</span></div>
+  <div class="stat"><span class="stat-num">May 2026</span><span class="stat-label">Last Verified</span></div>
+</div>
+
+<div class="controls">
+  <div class="search-box">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search by company, discount, or keyword..." oninput="renderAll()">
+  </div>
+  <div class="filter-tabs" id="filterTabs"></div>
+</div>
+
+<div class="location-bar" id="locationBar">
+  <span class="location-label">📍 Find Near Me:</span>
+  <div class="zip-box">
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="rgba(255,255,255,0.5)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <input type="text" id="zipInput" placeholder="ZIP code" maxlength="5" inputmode="numeric" pattern="[0-9]*">
+  </div>
+  <button class="zip-btn" onclick="applyZip()">Set Location</button>
+  <button class="geo-btn" onclick="useMyLocation()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>
+    Use My Location
+  </button>
+  <span class="location-status" id="locationStatus"></span>
+  <button class="location-clear" id="locationClear" style="display:none" onclick="clearLocation()" title="Clear location">×</button>
+</div>
+
+<div class="main">
+  <div class="disclaimer">
+    <strong>Important:</strong> Discounts vary by location and can change at any time. Many are not advertised — always ask! Some require AARP membership ($15/year), proof of age, or a loyalty card. Franchise locations may differ from corporate policy. Verify with each business before your visit.
+  </div>
+  <div id="content"></div>
+</div>
+
+<footer>
+  Sources: <a href="https://www.theseniorlist.com/senior-discounts/" target="_blank">The Senior List</a> &nbsp;·&nbsp;
+  <a href="https://www.aarp.org" target="_blank">AARP.org</a> &nbsp;·&nbsp;
+  <a href="https://www.gohealth.com/healthy-aging/these-senior-discounts-can-help-you-save-in-2025/" target="_blank">GoHealth</a> &nbsp;·&nbsp;
+  <a href="https://www.seniorliving.org/finance/senior-discounts/" target="_blank">SeniorLiving.org</a> &nbsp;·&nbsp;
+  <a href="https://clark.com/cell-phones/cell-phone-plans-senior-adults-citizens-best/" target="_blank">Clark.com</a> &nbsp;·&nbsp;
+  <a href="https://www.elderloveusa.org/post/verified-movie-theatres-with-discounts-for-older-adults-in-2025" target="_blank">Elder Love USA</a><br>
+  This page is for informational purposes only. Discounts are subject to change. Always confirm with the business directly.
+</footer>
+
+<script>
+const DISCOUNTS = [
+  // RESTAURANTS & DINING
+  {company:"Denny's",discount:"55+ Menu Pricing",category:"Restaurants & Dining",age:"55+",scope:"National",restriction:"Dine-in only; participating locations",notes:"Dedicated 55+ menu with reduced-price breakfast, lunch, and dinner options.",source:"https://www.theseniorlist.com/senior-discounts/",sourceLabel:"The Senior List"},
+  {company:"IHOP",discount:"55+ Menu Pricing",category:"Restaurants & Dining",age:"55+",scope:"National",restriction:"Participating locations only",notes:"Dedicated 55+ menu with smaller portions and lower prices at most locations.",source:"https://www.ihop.com/en/menu#55and-menu",sourceLabel:"IHOP"},
+  {company:"McDonald's",discount:"Discounted coffee & beverages",category:"Restaurants & Dining",age:"55+",scope:"National",restriction:"Varies by franchise — no company-wide policy",notes:"Individual franchise owners may offer senior coffee discounts. Always ask!",source:"https://www.theseniorlist.com/senior-discounts/",sourceLabel:"The Senior List"},
+  {company:"Hardee's",discount:"Up to 10% off",category:"Restaurants & Dining",age:"52+",scope:"National",restriction:"Varies by location",notes:"One of the lowest age thresholds for a senior discount in fast food.",source:"https://thefreebieguy.com/the-complete-list-of-senior-discounts/",sourceLabel:"The Freebie Guy"},
+  {company:"Captain D's",discount:"10% off",category:"Restaurants & Dining",age:"62+",scope:"National",restriction:"Wednesdays & Sundays are Senior Days; other days upon request",notes:"Discount and participation may vary by franchise location.",source:"https://thefreebieguy.com/the-complete-list-of-senior-discounts/",sourceLabel:"The Freebie Guy"},
+  {company:"Fuddruckers",discount:"10% off senior platter",category:"Restaurants & Dining",age:"60+",scope:"National",restriction:"Senior platter items only",notes:"Ask for the senior platter menu at the register.",source:"https://thefreebieguy.com/the-complete-list-of-senior-discounts/",sourceLabel:"The Freebie Guy"},
+  {company:"Gatti's Pizza",discount:"10% off",category:"Restaurants & Dining",age:"60+",scope:"National",restriction:"Participating locations only",notes:"Available at participating Gatti's Pizza locations — call ahead to confirm.",source:"https://thefreebieguy.com/the-complete-list-of-senior-discounts/",sourceLabel:"The Freebie Guy"},
+  {company:"Carrabba's Italian Grill",discount:"10% off",category:"Restaurants & Dining",age:"50+",scope:"National",restriction:"AARP membership required",notes:"Show your AARP card to your server before ordering.",source:"https://thefreebieguy.com/the-complete-list-of-senior-discounts/",sourceLabel:"The Freebie Guy"},
+  {company:"Rainforest Cafe",discount:"10% off",category:"Restaurants & Dining",age:"50+",scope:"National",restriction:"AARP membership required",notes:"Present AARP card to server before ordering.",source:"https://wtop.com/news/2025/08/great-senior-discounts-for-2025",sourceLabel:"WTOP / US News"},
+  {company:"Cinnabon",discount:"10% off in-store or online",category:"Restaurants & Dining",age:"50+",scope:"National",restriction:"AARP membership required; participating locations",notes:"Valid in-store and for online orders at participating locations.",source:"https://thefreebieguy.com/the-complete-list-of-senior-discounts/",sourceLabel:"The Freebie Guy"},
+  {company:"McAlister's Deli",discount:"10% off",category:"Restaurants & Dining",age:"50+",scope:"National",restriction:"AARP membership required; in-store, in-app & online orders",notes:"Broad AARP partnership — valid on multiple ordering channels.",source:"https://thefreebieguy.com/the-complete-list-of-senior-discounts/",sourceLabel:"The Freebie Guy"},
+  {company:"Papa John's",discount:"Up to 25% off",category:"Restaurants & Dining",age:"50+",scope:"National",restriction:"AARP membership required",notes:"One of the most generous restaurant discounts available through AARP.",source:"https://www.theseniorlist.com/senior-discounts/aarp/travel/",sourceLabel:"The Senior List"},
+  {company:"Outback Steakhouse",discount:"Up to 25% off",category:"Restaurants & Dining",age:"50+",scope:"National",restriction:"AARP membership required; participating locations",notes:"AARP members save on the full menu at participating Outback locations.",source:"https://www.seniorliving.org/finance/senior-discounts/",sourceLabel:"SeniorLiving.org"},
+
+  // RETAIL & SHOPPING
+  {company:"Kohl's",discount:"15% off in-store",category:"Retail & Shopping",age:"60+",scope:"National",restriction:"Wednesdays only; excludes Sephora, gift cards & some items; in-store only",notes:"One of the most widely known senior discount days. Every Wednesday.",source:"https://www.acolhomecare.com/post/8-surprising-retailers-that-offer-senior-discounts",sourceLabel:"ACOL Home Care"},
+  {company:"Michaels",discount:"10% off every day",category:"Retail & Shopping",age:"55+",scope:"National",restriction:"Ask at register; applies to regular-priced items",notes:"Arts & crafts chain — one of the few retailers offering a daily senior discount.",source:"https://www.theseniorlist.com/senior-discounts/",sourceLabel:"The Senior List"},
+  {company:"Jo-Ann Fabrics",discount:"Senior discount available",category:"Retail & Shopping",age:"55+",scope:"National",restriction:"Varies by location; ask at register",notes:"Fabric and craft store — check with your local store for current discount amount.",source:"https://www.theseniorlist.com/senior-discounts/",sourceLabel:"The Senior List"},
+  {company:"Banana Republic",discount:"30% off regular-priced items",category:"Retail & Shopping",age:"50+",scope:"National",restriction:"AARP membership required; some exclusions apply",notes:"Higher-end clothing brand with a strong AARP partnership discount.",source:"https://www.seniorliving.org/finance/senior-discounts/",sourceLabel:"SeniorLiving.org"},
+  {company:"Sam's Club",discount:"$30 off Club or $50 off Plus membership",category:"Retail & Shopping",age:"50+",scope:"National",restriction:"New memberships only",notes:"Significant one-time savings on warehouse club membership fees.",source:"https://www.theseniorlist.com/senior-discounts/",sourceLabel:"The Senior List"},
+
+  // GROCERY & PHARMACY
+  {company:"Albertsons",discount:"10% off entire purchase",category:"Grocery & Pharmacy",age:"55+",scope:"Regional",restriction:"First Wednesday of every month; loyalty card may be required",notes:"Additional savings available with Albertsons for U loyalty program.",source:"https://www.gohealth.com/healthy-aging/these-senior-discounts-can-help-you-save-in-2025/",sourceLabel:"GoHealth"},
+  {company:"Harris Teeter",discount:"5% off",category:"Grocery & Pharmacy",age:"60+",scope:"Regional",restriction:"Thursdays only; store loyalty card required",notes:"Southeast US chain. Check local store for participation.",source:"https://www.aarp.org/money/personal-finance/supermarket-senior-discounts/",sourceLabel:"AARP"},
+  {company:"Weis Markets",discount:"Senior discount day",category:"Grocery & Pharmacy",age:"60+",scope:"Regional",restriction:"Check local store for day and discount amount",notes:"Mid-Atlantic chain; participating stores offer a weekly senior discount day.",source:"https://www.aarp.org/money/personal-finance/supermarket-senior-discounts/",sourceLabel:"AARP"},
+  {company:"Fred Meyer",discount:"10% off",category:"Grocery & Pharmacy",age:"55+",scope:"Regional",restriction:"First Wednesday of each month",notes:"Pacific Northwest grocery/retail chain; part of the Kroger family.",source:"https://www.gohealth.com/healthy-aging/these-senior-discounts-can-help-you-save-in-2025/",sourceLabel:"GoHealth"},
+  {company:"Walgreens",discount:"20% off eligible items",category:"Grocery & Pharmacy",age:"55+",scope:"National",restriction:"First Tuesday of every month; myWalgreens membership required",notes:"Applies to most store-brand and eligible name-brand items. Sign up for myWalgreens free.",source:"https://askchapter.org/magazine/budgeting-financial-wellness-tips/saving-money/best-discounts-for-seniors",sourceLabel:"Chapter"},
+  {company:"Rite Aid",discount:"5x rewards points",category:"Grocery & Pharmacy",age:"65+",scope:"National",restriction:"First Wednesday of every month; Rite Aid membership card required",notes:"Accelerated points earning rather than a direct price discount on purchases.",source:"https://askchapter.org/magazine/budgeting-financial-wellness-tips/saving-money/best-discounts-for-seniors",sourceLabel:"Chapter"},
+
+  // TRAVEL & TRANSPORTATION
+  {company:"Amtrak",discount:"10% off most fares",category:"Travel & Transportation",age:"65+",scope:"National",restriction:"Select routes; book in advance for best availability",notes:"One of the most consistent senior travel discounts — applies to most Amtrak routes nationwide.",source:"https://unitedmedicareadvisors.com/blog/retirement/senior-discounts-2026/",sourceLabel:"United Medicare Advisors"},
+  {company:"United Airlines",discount:"Senior fares on select flights",category:"Travel & Transportation",age:"65+",scope:"National",restriction:"Select routes only; must call reservations — not available online",notes:"Call United reservations directly and ask specifically about senior fares.",source:"https://www.theseniorlist.com/senior-discounts/travel/",sourceLabel:"The Senior List"},
+  {company:"Delta Air Lines",discount:"Senior fares in certain markets",category:"Travel & Transportation",age:"65+",scope:"National",restriction:"Market-specific; call 1-800-221-1212 to inquire",notes:"Not bookable online; availability varies significantly by route.",source:"https://unitedmedicareadvisors.com/blog/retirement/senior-discounts-2026/",sourceLabel:"United Medicare Advisors"},
+  {company:"American Airlines",discount:"Senior fares in select markets",category:"Travel & Transportation",age:"65+",scope:"National",restriction:"Select Latin American markets and some domestic routes; call directly",notes:"Very limited availability — must call reservations and ask specifically.",source:"https://www.theseniorlist.com/senior-discounts/travel/",sourceLabel:"The Senior List"},
+  {company:"British Airways",discount:"Up to $200 off round-trip",category:"Travel & Transportation",age:"50+",scope:"National",restriction:"AARP membership required; transatlantic flights only; book online",notes:"Up to $200 off business class, $65 off economy on US-UK routes.",source:"https://www.theseniorlist.com/senior-discounts/aarp/travel/",sourceLabel:"The Senior List"},
+  {company:"Avis Car Rental",discount:"Up to 30% off base rates",category:"Travel & Transportation",age:"50+",scope:"National",restriction:"AARP membership required; Pay Now = up to 30%, Pay Later = up to 25%",notes:"Includes free additional driver and upgrade on compact through full-size cars.",source:"https://www.theseniorlist.com/senior-discounts/aarp/car-rental/",sourceLabel:"The Senior List"},
+  {company:"Budget Car Rental",discount:"Up to 35% off base rates",category:"Travel & Transportation",age:"50+",scope:"National",restriction:"AARP membership required; Pay Now saves up to 35%; use BCD# Y508537",notes:"Highest percentage car rental discount through AARP; free upgrade included.",source:"https://www.theseniorlist.com/senior-discounts/aarp/car-rental/",sourceLabel:"The Senior List"},
+  {company:"Hertz",discount:"Up to 20% off base rates",category:"Travel & Transportation",age:"50+",scope:"National",restriction:"Hertz Fifty Plus Program; use CDP# 2007815 at booking",notes:"No AARP required — Hertz's own senior program. Book online or call directly.",source:"https://unitedmedicareadvisors.com/blog/retirement/senior-discounts-2026/",sourceLabel:"United Medicare Advisors"},
+  {company:"Dollar Rent A Car",discount:"10% off",category:"Travel & Transportation",age:"50+",scope:"National",restriction:"50+ rate; verify at booking",notes:"One of the more accessible car rental discounts — no membership required.",source:"https://unitedmedicareadvisors.com/blog/retirement/senior-discounts-2026/",sourceLabel:"United Medicare Advisors"},
+  {company:"Thrifty Car Rental",discount:"5% off time & mileage",category:"Travel & Transportation",age:"50+",scope:"National",restriction:"Silver Club Program membership required (free to join)",notes:"Enroll in Thrifty's Silver Club at Thrifty.com for this ongoing discount.",source:"https://unitedmedicareadvisors.com/blog/retirement/senior-discounts-2026/",sourceLabel:"United Medicare Advisors"},
+  {company:"Alamo Car Rental",discount:"Up to 25% off",category:"Travel & Transportation",age:"50+",scope:"National",restriction:"AARP membership required",notes:"Book through the AARP Travel Center for best available rates.",source:"https://www.theseniorlist.com/senior-discounts/aarp/car-rental/",sourceLabel:"The Senior List"},
+  {company:"Best Western",discount:"10% or more off nightly rate",category:"Travel & Transportation",age:"55+",scope:"National",restriction:"AARP membership or AAA; advance reservation recommended",notes:"Call 1-800-618-2277 or book online and select the Senior/AARP rate.",source:"https://www.theseniorlist.com/senior-discounts/aarp/travel/",sourceLabel:"The Senior List"},
+  {company:"Choice Hotels (Comfort Inn, Clarion, Cambria & more)",discount:"Up to 10% off",category:"Travel & Transportation",age:"60+",scope:"National",restriction:"Select 'Senior/AARP' rate at booking; advance reservation needed",notes:"Applies across the entire Choice Hotels family — 7,000+ locations worldwide.",source:"https://www.theseniorlist.com/senior-discounts/travel/",sourceLabel:"The Senior List"},
+  {company:"Marriott",discount:"10–15% off nightly rate",category:"Travel & Transportation",age:"62+",scope:"National",restriction:"Senior Discount Rate; availability varies by property and date",notes:"Check marriott.com or call; always compare to current promotional rates too.",source:"https://www.livingwellstores.com/blog/post/complete-guide-to-senior-discounts-in-the-united-states-2026-edition",sourceLabel:"Living Well Stores"},
+  {company:"Hilton",discount:"Senior rate available",category:"Travel & Transportation",age:"65+",scope:"National",restriction:"Varies by property; select 'Senior Rate' at hilton.com",notes:"Rate availability varies by location — always compare to standard rates.",source:"https://www.livingwellstores.com/blog/post/complete-guide-to-senior-discounts-in-the-united-states-2026-edition",sourceLabel:"Living Well Stores"},
+  {company:"Omni Hotels & Resorts",discount:"Senior rate available",category:"Travel & Transportation",age:"55+",scope:"National",restriction:"Call directly or select senior rate when booking online",notes:"Upscale chain; senior rates apply at most Omni properties.",source:"https://www.glenviewnaples.com/blog/senior-discount-travels/",sourceLabel:"The Glenview"},
+
+  // ENTERTAINMENT & RECREATION
+  {company:"AMC Theatres",discount:"$1–$4 off ticket price",category:"Entertainment & Recreation",age:"60+",scope:"National",restriction:"Select showtimes; choose 'Senior' when purchasing online or at the box office",notes:"Earlier afternoon showtimes typically offer the deepest discounts.",source:"https://www.theseniorlist.com/senior-discounts/retail/amc/",sourceLabel:"The Senior List"},
+  {company:"Cinemark",discount:"Reduced admission on Senior Days",category:"Entertainment & Recreation",age:"60+",scope:"National",restriction:"Specific day varies by location; excludes special engagement films",notes:"Contact your local Cinemark for their specific senior discount day and pricing.",source:"https://www.elderloveusa.org/post/verified-movie-theatres-with-discounts-for-older-adults-in-2025",sourceLabel:"Elder Love USA"},
+  {company:"Showcase Cinemas",discount:"$7.75 ticket + $5.50 popcorn & drink",category:"Entertainment & Recreation",age:"60+",scope:"Regional",restriction:"Senior Wednesdays only; excludes Lux Level & special engagements",notes:"Premium formats (IMAX, MX4D, XPlus) included with surcharges waived — exceptional value!",source:"https://www.elderloveusa.org/post/verified-movie-theatres-with-discounts-for-older-adults-in-2025",sourceLabel:"Elder Love USA"},
+  {company:"Goodrich Quality Theaters",discount:"Any movie for $6",category:"Entertainment & Recreation",age:"65+",scope:"Regional",restriction:"Mondays only; excludes IMAX, GDX, 3D, Fathom Events",notes:"Great flat-rate deal for Midwest moviegoers — $6 regardless of the film.",source:"https://www.elderloveusa.org/post/verified-movie-theatres-with-discounts-for-older-adults-in-2025",sourceLabel:"Elder Love USA"},
+  {company:"Landmark Cinemas",discount:"20% off admission",category:"Entertainment & Recreation",age:"65+",scope:"Regional",restriction:"Mondays only",notes:"Art-house and indie film chain; Monday is senior discount day.",source:"https://www.elderloveusa.org/post/verified-movie-theatres-with-discounts-for-older-adults-in-2025",sourceLabel:"Elder Love USA"},
+  {company:"National Parks (America the Beautiful Pass)",discount:"Free lifetime pass to 400+ national parks",category:"Entertainment & Recreation",age:"62+",scope:"National",restriction:"One-time $80 fee; covers pass holder + all vehicle passengers",notes:"Covers entrance fees at all 400+ national parks, monuments & recreation areas. Extraordinary value.",source:"https://www.nps.gov/planyourvisit/passes.htm",sourceLabel:"National Park Service"},
+  {company:"Most Major Museums & Zoos",discount:"20–50% off or free admission",category:"Entertainment & Recreation",age:"65+",scope:"National",restriction:"Varies by institution; always ask at the ticket window",notes:"All 19 Smithsonian museums are free to everyone. Other major institutions offer substantial senior discounts.",source:"https://www.seniorliving.org/finance/senior-discounts/",sourceLabel:"SeniorLiving.org"},
+
+  // TECHNOLOGY & TELECOM
+  {company:"Consumer Cellular",discount:"Plans from $20/month + 5% AARP discount",category:"Technology & Telecom",age:"50+",scope:"National",restriction:"AARP members get 5% off monthly bill & 30% off accessories",notes:"Rated #1 in customer satisfaction (J.D. Power 2026). No contracts. Plans starting at $20/month.",source:"https://www.seniorliving.org/cell-phone/best/plans/",sourceLabel:"SeniorLiving.org"},
+  {company:"T-Mobile",discount:"Essentials 55+ Plan from $45/line/month",category:"Technology & Telecom",age:"55+",scope:"National",restriction:"Autopay required; 2-line plan is $60/month total — best value",notes:"Unlimited talk, text & data with 50GB premium speeds. No state restrictions to qualify.",source:"https://clark.com/cell-phones/cell-phone-plans-senior-adults-citizens-best/",sourceLabel:"Clark.com"},
+  {company:"AT&T",discount:"Unlimited 55+ Plan from $40/month",category:"Technology & Telecom",age:"55+",scope:"National",restriction:"Previously Florida-only; now available nationwide",notes:"Unlimited data, talk & text. Previously the best-kept secret — now open to all states.",source:"https://www.seniorliving.org/cell-phone/best/plans/",sourceLabel:"SeniorLiving.org"},
+  {company:"Verizon",discount:"55+ Unlimited Plan available",category:"Technology & Telecom",age:"55+",scope:"Regional",restriction:"Florida residents only; includes Canada & Mexico coverage",notes:"Pricier than T-Mobile but includes international coverage. Florida-specific eligibility.",source:"https://www.seniorliving.org/cell-phone/verizon/",sourceLabel:"SeniorLiving.org"},
+  {company:"Amazon Prime",discount:"Prime Access at $6.99/month",category:"Technology & Telecom",age:"Any",scope:"National",restriction:"Must receive Medicaid, SNAP, SSI, or other qualifying government assistance",notes:"Not strictly a senior discount, but many low-income seniors qualify. Standard price is $14.99/month.",source:"https://www.theseniorlist.com/senior-discounts/",sourceLabel:"The Senior List"},
+];
+
+const ICONS = {
+  "Restaurants & Dining":"🍽️",
+  "Retail & Shopping":"🛍️",
+  "Grocery & Pharmacy":"🛒",
+  "Travel & Transportation":"✈️",
+  "Entertainment & Recreation":"🎭",
+  "Technology & Telecom":"📱",
+};
+
+let currentCat = 'all';
+
+function init() {
+  document.getElementById('totalCount').textContent = DISCOUNTS.length;
+  buildFilters();
+  renderAll();
+}
+
+function buildFilters() {
+  const cats = ['all', ...new Set(DISCOUNTS.map(d => d.category))].sort((a,b) => a==='all'?-1:a.localeCompare(b));
+  document.getElementById('filterTabs').innerHTML = cats.map(c =>
+    `<button class="filter-tab ${c==='all'?'active':''}" data-cat="${esc(c)}">${c==='all'?'All Categories':esc(c)}</button>`
+  ).join('');
+  document.getElementById('filterTabs').addEventListener('click', e => {
+    const btn = e.target.closest('button[data-cat]');
+    if (!btn) return;
+    currentCat = btn.dataset.cat === 'all' ? 'all' : btn.dataset.cat;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    renderAll();
+  });
+}
+
+function renderAll() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const filtered = DISCOUNTS.filter(d => {
+    const matchCat = currentCat === 'all' || d.category === currentCat;
+    const hay = [d.company,d.discount,d.category,d.restriction,d.notes,d.age,d.scope].join(' ').toLowerCase();
+    return matchCat && (!q || hay.includes(q));
+  });
+
+  if (!filtered.length) {
+    document.getElementById('content').innerHTML =
+      '<div class="no-results"><h3>No results found</h3><p>Try adjusting your search or selecting a different category.</p></div>';
+    return;
+  }
+
+  const groups = {};
+  filtered.forEach(d => { if (!groups[d.category]) groups[d.category]=[]; groups[d.category].push(d); });
+  const sorted = Object.keys(groups).sort();
+
+  document.getElementById('content').innerHTML = sorted.map((cat,i) => `
+    <div class="category-section" style="animation-delay:${i*70}ms">
+      <div class="category-header">
+        <div class="category-icon">${ICONS[cat]||'⭐'}</div>
+        <div class="category-title">${esc(cat)}</div>
+        <div class="category-count">${groups[cat].length} discount${groups[cat].length!==1?'s':''}</div>
+      </div>
+      <div class="cards-grid">
+        ${groups[cat].map(d=>`
+          <div class="discount-card">
+            <div class="card-company">${esc(d.company)}</div>
+            <div class="card-discount">${esc(d.discount)}</div>
+            <div class="card-description">${esc(d.notes)}</div>
+            <div class="card-tags">
+              ${d.age?`<span class="tag tag-age">${esc(d.age)}</span>`:''}
+              ${d.scope==='National'?`<span class="tag tag-national">National</span>`:''}
+              ${d.scope==='Regional'?`<span class="tag tag-regional">Regional</span>`:''}
+              ${d.restriction?`<span class="tag tag-restrict">${esc(d.restriction.length>45?d.restriction.slice(0,45)+'…':d.restriction)}</span>`:''}
+            </div>
+            ${(d.source || true) ? `<div class="card-footer">
+              ${d.source ? `<a class="source-link" href="${esc(d.source)}" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Verify Source</a>` : '<span></span>'}
+              <a class="find-btn" href="${mapsUrl(d.company)}" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${currentLocation ? 'Find Near Me' : 'Find on Map'}</a>
+            </div>` : ''}
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function esc(s){
+  if(!s)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── LOCATION ─────────────────────────────────────────────────────────
+let currentLocation = null; // {zip, lat, lng, label}
+
+function mapsUrl(company) {
+  const q = encodeURIComponent(company);
+  if (currentLocation) {
+    if (currentLocation.lat && currentLocation.lng) {
+      return `https://www.google.com/maps/search/${q}/@${currentLocation.lat},${currentLocation.lng},13z`;
+    }
+    return `https://www.google.com/maps/search/${q}+near+${encodeURIComponent(currentLocation.zip)}`;
+  }
+  return `https://www.google.com/maps/search/${q}`;
+}
+
+function applyZip() {
+  const zip = document.getElementById('zipInput').value.trim();
+  if (!/^\d{5}$/.test(zip)) {
+    setStatus('⚠ Please enter a valid 5-digit ZIP code.', true);
+    return;
+  }
+  currentLocation = { zip, label: zip };
+  setStatus(`📍 Showing results near ${zip}`, false);
+  document.getElementById('locationClear').style.display = '';
+  renderAll();
+}
+
+function useMyLocation() {
+  if (!navigator.geolocation) {
+    setStatus('⚠ Geolocation not supported by your browser.', true);
+    return;
+  }
+  setStatus('Detecting your location…', false);
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      currentLocation = { lat, lng, label: 'your location' };
+      setStatus(`📍 Using your current location`, false);
+      document.getElementById('locationClear').style.display = '';
+      renderAll();
+    },
+    () => setStatus('⚠ Could not get your location. Try entering a ZIP.', true)
+  );
+}
+
+function clearLocation() {
+  currentLocation = null;
+  document.getElementById('zipInput').value = '';
+  document.getElementById('locationClear').style.display = 'none';
+  setStatus('', false);
+  renderAll();
+}
+
+function setStatus(msg, isError) {
+  const el = document.getElementById('locationStatus');
+  el.textContent = msg;
+  el.style.color = isError ? '#ffb3b3' : 'var(--gold-light)';
+}
+
+// allow pressing Enter in zip field
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('zipInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') applyZip();
+  });
+});
+
+init();
+</script>
+</body>
+</html>
