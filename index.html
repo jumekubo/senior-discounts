@@ -100,7 +100,7 @@
 <body>
 
 <header>
-  <div class="header-badge">Researched &amp; Updated · August 2026</div>
+  <div class="header-badge">Researched &amp; Updated · September 2026</div>
   <h1>Senior Citizen <span>Discounts</span> Guide</h1>
   <p>A comprehensive, categorized directory of discounts available to older adults across dining, retail, travel, technology, and more.</p>
   <div class="header-meta">Sources: AARP · The Senior List · GoHealth · SeniorLiving.org · Clark.com &nbsp;·&nbsp; Always verify with the business before visiting</div>
@@ -110,7 +110,7 @@
   <div class="stat"><span class="stat-num" id="totalCount">—</span><span class="stat-label">Discounts Listed</span></div>
   <div class="stat"><span class="stat-num">6</span><span class="stat-label">Categories</span></div>
   <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Starting Age</span></div>
-  <div class="stat"><span class="stat-num">August 2026</span><span class="stat-label">Last Verified</span></div>
+  <div class="stat"><span class="stat-num">September 2026</span><span class="stat-label">Last Verified</span></div>
 </div>
 
 <div class="controls">
@@ -177,6 +177,7 @@ const DISCOUNTS = [
   {company:"Chili's Grill & Bar",discount:"10% off",category:"Restaurants & Dining",age:"55+",scope:"National",restriction:"Varies by franchise — no official company-wide policy; ask before ordering",notes:"Many locations honor 10% off food and non-alcoholic beverages for guests 55+, but it's not guaranteed everywhere. Call your local Chili's to confirm before visiting.",source:"https://www.theseniorlist.com/senior-discounts/restaurants/chilis/",sourceLabel:"The Senior List"},
   {company:"El Pollo Loco",discount:"10% off (up to $1)",category:"Restaurants & Dining",age:"60+",scope:"National",restriction:"Discount capped at $1; one per transaction; participating locations",notes:"Ask the cashier for the senior discount before paying and show ID. Savings are modest but stack with combo meals.",source:"https://www.theseniorlist.com/senior-discounts/restaurants/el-pollo-loco/",sourceLabel:"The Senior List"},
   {company:"Fazoli's",discount:"Club 62 senior menu",category:"Restaurants & Dining",age:"62+",scope:"National",restriction:"Participating locations only; requires Club 62 card; call ahead to confirm",notes:"Join the free Club 62 program for senior-priced pasta entrees, including a $4 pasta-with-side-salad deal on Wednesdays at many locations.",source:"https://www.seniorcitizendiscountlist.org/fazolis-senior-discount-club-62/",sourceLabel:"Senior Citizen Discount List"},
+  {company:"Wendy's",discount:"Discounts at participating locations (varies)",category:"Restaurants & Dining",age:"55+",scope:"National",restriction:"Varies widely by franchise — no company-wide policy; not always advertised, so ask",notes:"Wendy's has no corporate senior discount. Individual franchise owners may offer 10% off or a free drink for seniors — it's rarely posted, so ask at the counter.",source:"https://consumergravity.com/does-wendys-give-senior-discounts/",sourceLabel:"Consumer Gravity"},
 
   // RETAIL & SHOPPING
   {company:"Kohl's",discount:"15% off in-store",category:"Retail & Shopping",age:"60+",scope:"National",restriction:"Wednesdays only; excludes Sephora, gift cards & some items; in-store only",notes:"One of the most widely known senior discount days. Every Wednesday.",source:"https://www.acolhomecare.com/post/8-surprising-retailers-that-offer-senior-discounts",sourceLabel:"ACOL Home Care"},
@@ -186,6 +187,7 @@ const DISCOUNTS = [
   {company:"Banana Republic",discount:"10% off",category:"Retail & Shopping",age:"50+",scope:"National",restriction:"No AARP required; varies by location and age reported (some locations cite 62+) — ask at register",notes:"Not a company-wide policy — discount amount and age threshold vary by store. Ask at checkout and show photo ID to claim.",source:"https://techfor60s.com/senior-discounts/banana-republic-senior",sourceLabel:"TechFor60s"},
   {company:"Sam's Club",discount:"$30 off Club or $50 off Plus membership",category:"Retail & Shopping",age:"50+",scope:"National",restriction:"New memberships only",notes:"Significant one-time savings on warehouse club membership fees.",source:"https://www.theseniorlist.com/senior-discounts/",sourceLabel:"The Senior List"},
   {company:"Walmart+ (AARP)",discount:"$40 off annual membership ($58/year instead of $98)",category:"Retail & Shopping",age:"Any",scope:"National",restriction:"AARP membership required; enroll through the official AARP Walmart+ offer; AARP status is re-verified annually to keep the discounted rate",notes:"Not a traditional in-store senior discount — AARP members link their membership to Walmart+ for a discounted annual subscription, plus added fuel discounts at Exxon and Mobil stations.",source:"https://www.aarp.org/membership/benefits/shopping/walmartplus/",sourceLabel:"AARP.org"},
+  {company:"Great Clips",discount:"$2–$3 off haircut",category:"Retail & Shopping",age:"65+",scope:"National",restriction:"Varies by franchise salon — no coupon or loyalty card needed, just mention your age at checkout",notes:"Great Clips is 100% franchised, so exact senior pricing (typically $13–$17) varies by salon. Manufacturer coupons are sometimes a better deal than the senior price, so compare both.",source:"https://techfor60s.com/senior-discounts/greatclips-senior",sourceLabel:"TechFor60s"},
 
   // GROCERY & PHARMACY
   {company:"Albertsons",discount:"10% off entire purchase",category:"Grocery & Pharmacy",age:"55+",scope:"Regional",restriction:"First Wednesday of every month; loyalty card required; check local store for participation",notes:"Some locations have phased out the senior day — confirm with your store. Albertsons for U loyalty program offers year-round digital deals.",source:"https://www.theseniorlist.com/senior-discounts/groceries/",sourceLabel:"The Senior List"},
@@ -225,6 +227,7 @@ const DISCOUNTS = [
   {company:"National Parks (America the Beautiful Pass)",discount:"Free lifetime pass to 400+ national parks",category:"Entertainment & Recreation",age:"62+",scope:"National",restriction:"One-time $80 fee; covers pass holder + all vehicle passengers",notes:"Covers entrance fees at all 400+ national parks, monuments & recreation areas. Extraordinary value.",source:"https://www.nps.gov/planyourvisit/passes.htm",sourceLabel:"National Park Service"},
   {company:"Most Major Museums & Zoos",discount:"20–50% off or free admission",category:"Entertainment & Recreation",age:"65+",scope:"National",restriction:"Varies by institution; always ask at the ticket window",notes:"All 19 Smithsonian museums are free to everyone. Other major institutions offer substantial senior discounts.",source:"https://www.seniorliving.org/finance/senior-discounts/",sourceLabel:"SeniorLiving.org"},
   {company:"SilverSneakers / Renew Active",discount:"Free gym & fitness membership",category:"Entertainment & Recreation",age:"65+",scope:"National",restriction:"Requires qualifying Medicare Advantage or Medigap plan; check your plan for inclusion",notes:"Included with many Medicare Advantage plans at no extra cost — covers access to thousands of gyms, YMCAs, fitness centers, and online classes. Check silversneakers.com to see if your plan qualifies.",source:"https://www.medicarefaq.com/faqs/silver-sneakers-program/",sourceLabel:"MedicareFAQ"},
+  {company:"Regal Cinemas",discount:"Up to $3 off ticket price",category:"Entertainment & Recreation",age:"60+",scope:"National",restriction:"Select 'Senior' ticket type online or at the box office; price varies by film, format & showtime; photo ID may be requested",notes:"Discount is location- and showtime-dependent rather than a fixed national price. Premium formats like IMAX carry additional surcharges on top of the senior base price.",source:"https://www.theseniorlist.com/senior-discounts/retail/regal/",sourceLabel:"The Senior List"},
 
   // TECHNOLOGY & TELECOM
   {company:"Consumer Cellular",discount:"Unlimited plan $35/month + 5% AARP discount",category:"Technology & Telecom",age:"50+",scope:"National",restriction:"AARP members get 5% off monthly bill & 30% off accessories",notes:"Unlimited plan reduced to $35/month (from $40) as of Feb 2026. AARP members pay ~$33.25/month. No contracts. Runs exclusively on AT&T's network.",source:"https://www.seniorliving.org/cell-phone/best/plans/",sourceLabel:"SeniorLiving.org"},
@@ -336,7 +339,7 @@ function esc(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ── LOCATION ─────────────────────────────────────────────────────────
+// ── LOCATION ──────────────────────────────────────────
 let currentLocation = null; // {zip, lat, lng, label}
 
 function mapsUrl(company) {
